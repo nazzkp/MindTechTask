@@ -56,6 +56,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.filteredCars.collectLatest { cars ->
+                    carListAdapter = CarDetailsAdapter(cars, lifecycleScope)
+                    recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+                    recyclerView.adapter = carListAdapter
+
+                    val allTitles = cars.joinToString("") { it.title }
+                    val frequencyMap = allTitles
+                        .filter { it.isLetter() }
+                        .groupingBy { it.lowercaseChar() }
+                        .eachCount()
+                        .toList()
+                        .sortedByDescending { it.second }
+                        .take(3)
+                    character =
+                        frequencyMap.joinToString("\n") { "${it.first} = ${it.second}" }
+                }
+            }
+        }
+
 
         binding.searchBar.addTextChangedListener { it ->
             viewModel.updateSearchQuery(it.toString())
@@ -134,27 +155,6 @@ class MainActivity : AppCompatActivity() {
 
                 brandName?.let {
                     viewModel.selectBrand(it)
-                }
-
-                lifecycleScope.launch {
-                    repeatOnLifecycle(Lifecycle.State.STARTED) {
-                        viewModel.filteredCars.collectLatest { cars ->
-                            carListAdapter = CarDetailsAdapter(cars, lifecycleScope)
-                            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-                            recyclerView.adapter = carListAdapter
-
-                            val allTitles = cars.joinToString("") { it.title }
-                            val frequencyMap = allTitles
-                                .filter { it.isLetter() }
-                                .groupingBy { it.lowercaseChar() }
-                                .eachCount()
-                                .toList()
-                                .sortedByDescending { it.second }
-                                .take(3)
-                            character =
-                                frequencyMap.joinToString("\n") { "${it.first} = ${it.second}" }
-                        }
-                    }
                 }
             }
         })
