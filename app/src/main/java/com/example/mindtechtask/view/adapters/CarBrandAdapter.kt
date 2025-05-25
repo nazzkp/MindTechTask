@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mindtechtask.R
-import com.example.mindtechtask.model.dataClass.Car
+import com.example.mindtechtask.model.dataClass.CarBrand
+import com.example.mindtechtask.model.dataClass.carBrands
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,10 +18,10 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
-class CarImageAdapter(
-    private val carsList: List<Car>,
+class CarBrandAdapter(
+    private val carsList: List<CarBrand>,
     private val scope: CoroutineScope
-) : RecyclerView.Adapter<CarImageAdapter.ImageViewHolder>() {
+) : RecyclerView.Adapter<CarBrandAdapter.ImageViewHolder>() {
 
     inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -33,7 +34,7 @@ class CarImageAdapter(
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val imageUrl = carsList[position].imageLink
+        val imageUrl = carsList[position].brandLogoUrl
         holder.imageView.setImageDrawable(null)
 
         scope.launch(Dispatchers.Main) {
@@ -60,4 +61,8 @@ class CarImageAdapter(
                 null
             }
         }
+
+    fun getBrandAt(position: Int): CarBrand? {
+        return if (position in carBrands.indices) carBrands[position] else null
+    }
 }

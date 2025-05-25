@@ -36,10 +36,10 @@ class CarDetailsAdapter(
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val imageUrl = carsList[position].imageLink
+        val imageUrl = carsList[position].carImage
         holder.carImage.setImageDrawable(null)
         holder.carColor.text = carsList[position].color
-        holder.carTitle.text = carsList[position].brandName
+        holder.carTitle.text = carsList[position].title
 
         scope.launch(Dispatchers.Main) {
             val bitmap = loadBitmapFromUrl(imageUrl)
