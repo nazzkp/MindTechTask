@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MindTechTask</string>
+    <string name="item_image">Item Image</string>
+    <string name="search">Search</string>
+    <string name="title">title</string>
+    <string name="color">color</string>
+</resources>
