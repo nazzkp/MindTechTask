@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MindTechTask</string>
+    <string name="item_image">Item Image</string>
+    <string name="search">Search</string>
+    <string name="title">title</string>
+    <string name="color">color</string>
+    <string name="sheet">sheet</string>
+    <string name="bottom_sheet_title">Statistics</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="items_count">Items Count :</string>
+</resources>

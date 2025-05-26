@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomSheetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/sheetTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bottom_sheet_title"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/items_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/items_count"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:paddingBottom="8dp" />
+    <TextView
+        android:id="@+id/character_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/items_count"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:paddingBottom="8dp" />
+
+    <Button
+        android:id="@+id/dismissButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dismiss"
+        android:layout_gravity="bottom"/>
+</LinearLayout>
